@@ -1,0 +1,35 @@
+extends ./layout/index
+
+block content
+  main.container.mt-5 
+      h1.text-center.mt-5=pagina
+      
+      blockquote.text-center Read about our customers and their experiences
+      
+      include ./layout/bloque_testimoniales
+
+      .row
+         
+        .col-md-12
+          h2.d-block.w-100.text-center Add a testimonial
+          
+          if(errores)
+            each error in errores
+              .alert.col.alert-danger.text-center= error.mensaje
+
+        .row.justify-content-center.col 
+            .col-md-8
+               form(action="/testimonials" method="POST")
+                  .form-group 
+                    label(for="nombre") Name
+                    input#nombre( type="text", placeholder="your name", name ="nombre", class="form-control", value=nombre)
+                  .form-group  
+                    label(for="correo") Email
+                    input#correo( type="text", placeholder="your email", name ="correo", class="form-control", value=correo)
+                  .form-group  
+                    label(for="mensaje") Message
+                    textarea#mensaje(class="form-control", name="mensaje", placeholder="Your message", rows="5", value=mensaje) 
+                  
+                  input.btn.btn-success.btn-block(type="submit")
+
+
